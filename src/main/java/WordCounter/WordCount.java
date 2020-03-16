@@ -1,25 +1,30 @@
 package WordCounter;
 
 
+import java.util.Arrays;
+
 public class WordCount {
 
     private UserInterface UI;
 
-    public WordCount(UserInterface UI){
+    public WordCount(UserInterface UI) {
         this.UI = UI;
     }
 
-    public void countWords(){
+    public void countWords() {
         String userInput = UI.getUserInput();
         int count = countWordsFrom(userInput);
         UI.printWordCount(count);
     }
 
     private int countWordsFrom(String userInput) {
-        // break up userInput into words by whitespace
-        // check each string is a word by regex
-        // count number of words
-        return 0;
+        return (int) Arrays.stream(userInput.split(" "))
+                .filter(this::isAWord)
+                .count();
+    }
+
+    private Boolean isAWord(String input) {
+        return input.matches("[a-zA-Z]+");
     }
 
 
