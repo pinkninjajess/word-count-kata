@@ -23,6 +23,6 @@ public class FakeUserInterface implements UserInterface {
 
     @Override
     public void printWordCount(int count) {
-        this.wordCount = count;
+        setWordCount(count);
     }
 }

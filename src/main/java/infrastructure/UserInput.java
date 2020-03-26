@@ -1,4 +1,4 @@
-package UserInput;
+package infrastructure;
 
 import WordCounter.UserInterface;
 
