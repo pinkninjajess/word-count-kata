@@ -1,9 +1,9 @@
-package ut.wordcounting;
+package ut.domain;
 
+import domain.StopperWords;
+import domain.WordCounter;
 import infrastructure.FileInput;
 import org.junit.Test;
-import wordcounting.StopperWords;
-import wordcounting.WordCounter;
 
 import java.io.IOException;
 

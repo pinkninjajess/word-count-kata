@@ -1,6 +1,6 @@
-package ut.wordcounting;
+package ut.domain;
 
-import wordcounting.UserInterface;
+import domain.UserInterface;
 
 public class FakeUserInterface implements UserInterface {
     private String userInput;

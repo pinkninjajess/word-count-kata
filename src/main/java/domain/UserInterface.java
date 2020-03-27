@@ -1,4 +1,4 @@
-package wordcounting;
+package domain;
 
 public interface UserInterface {
     String getUserInput();

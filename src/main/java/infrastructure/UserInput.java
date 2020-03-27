@@ -1,6 +1,6 @@
 package infrastructure;
 
-import wordcounting.UserInterface;
+import domain.UserInterface;
 
 import java.util.Scanner;
 

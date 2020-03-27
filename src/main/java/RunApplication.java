@@ -1,8 +1,8 @@
+import domain.StopperWords;
+import domain.UserInterface;
+import domain.WordCounter;
 import infrastructure.FileInput;
 import infrastructure.UserInput;
-import wordcounting.StopperWords;
-import wordcounting.UserInterface;
-import wordcounting.WordCounter;
 
 import java.io.IOException;
 
