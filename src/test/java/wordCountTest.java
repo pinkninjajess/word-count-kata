@@ -13,7 +13,6 @@ public class wordCountTest {
     public void countWords_onlyWordsProvided_IsCorrect() throws IOException {
         FakeUserInterface ui = new FakeUserInterface();
         StopperWords stopperWordsInterface = new FileInput();
-        stopperWordsInterface.setStopperWords("src/main/java/infrastructure/StopperWordsFile");
         ui.setUserInput("Hello World");
         WordCount wordCount = new WordCount(ui, stopperWordsInterface);
         wordCount.countWords();
@@ -24,7 +23,6 @@ public class wordCountTest {
     public void countWords_wordsAndNonASCII_countsOnlyWords() throws IOException {
         FakeUserInterface ui = new FakeUserInterface();
         StopperWords stopperWordsInterface = new FileInput();
-        stopperWordsInterface.setStopperWords("src/main/java/infrastructure/StopperWordsFile");
 
         ui.setUserInput("H1 th3r3, h0w are y0u? I am doing well");
         WordCount wordCount = new WordCount(ui, stopperWordsInterface);
@@ -36,7 +34,6 @@ public class wordCountTest {
     public void countWords_wordsAndStopperWords_countsOnlyWords() throws IOException {
         FakeUserInterface ui = new FakeUserInterface();
         StopperWords stopperWordsInterface = new FileInput();
-        stopperWordsInterface.setStopperWords("src/main/java/infrastructure/StopperWordsFile");
 
         ui.setUserInput("the coffee is on a table");
         WordCount wordCount = new WordCount(ui, stopperWordsInterface);
@@ -49,7 +46,6 @@ public class wordCountTest {
     public void countWords_onlyStopperWords_countsOnlyWords() throws IOException {
         FakeUserInterface ui = new FakeUserInterface();
         StopperWords stopperWordsInterface = new FileInput();
-        stopperWordsInterface.setStopperWords("src/main/java/infrastructure/StopperWordsFile");
 
         ui.setUserInput("the on off a");
         WordCount wordCount = new WordCount(ui, stopperWordsInterface);

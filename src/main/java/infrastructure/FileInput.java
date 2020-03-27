@@ -9,19 +9,18 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class FileInput implements StopperWords {
+
+    public FileInput() throws IOException {
+        String words = new String(Files.readAllBytes(Paths.get("src/main/java/infrastructure/StopperWordsFile")));
+        String[] stopperWordsArray = words.split("\\s+");
+        this.stopperWords = new ArrayList<>(Arrays.asList(stopperWordsArray));
+    }
+
     private ArrayList<String> stopperWords;
 
     @Override
     public ArrayList<String> getStopperWords() {
         return stopperWords;
-    }
-
-    @Override
-    public void setStopperWords(String stopperWordsFilePath) throws IOException {
-        // get file input
-        String words = new String(Files.readAllBytes(Paths.get(stopperWordsFilePath)));
-        String[] stopperWordsArray = words.split("\\s+");
-        this.stopperWords = new ArrayList<>(Arrays.asList(stopperWordsArray));
     }
 
 }
