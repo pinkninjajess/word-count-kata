@@ -21,6 +21,15 @@ public class wordCounterTest {
     }
 
     @Test
+    public void countWords_oneWord_isCorrect() throws IOException {
+        WordCounter wordCounter = createWordCounterWith("Hello");
+
+        wordCounter.countWords();
+
+        assertEquals(1, ui.getWordCount());
+    }
+
+    @Test
     public void countWords_onlyWordsProvided_IsCorrect() throws IOException {
         WordCounter wordCounter = createWordCounterWith("Hello World");
 
