@@ -1,4 +1,4 @@
-package WordCounter;
+package wordcounting;
 
 public interface UserInterface {
     String getUserInput();

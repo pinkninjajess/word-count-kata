@@ -1,4 +1,6 @@
-import WordCounter.UserInterface;
+package ut.wordcounting;
+
+import wordcounting.UserInterface;
 
 public class FakeUserInterface implements UserInterface {
     private String userInput;

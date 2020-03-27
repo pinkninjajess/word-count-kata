@@ -1,6 +1,6 @@
 package infrastructure;
 
-import WordCounter.StopperWords;
+import wordcounting.StopperWords;
 
 import java.io.IOException;
 import java.nio.file.Files;

@@ -1,8 +1,8 @@
-import WordCounter.StopperWords;
-import WordCounter.UserInterface;
-import WordCounter.WordCount;
 import infrastructure.FileInput;
 import infrastructure.UserInput;
+import wordcounting.StopperWords;
+import wordcounting.UserInterface;
+import wordcounting.WordCount;
 
 import java.io.IOException;
 

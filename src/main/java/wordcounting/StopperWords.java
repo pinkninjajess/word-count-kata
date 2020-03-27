@@ -1,4 +1,4 @@
-package WordCounter;
+package wordcounting;
 
 import java.util.ArrayList;
 
