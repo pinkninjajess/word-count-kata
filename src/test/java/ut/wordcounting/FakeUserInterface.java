@@ -24,7 +24,7 @@ public class FakeUserInterface implements UserInterface {
     }
 
     @Override
-    public void printWordCount(int count) {
+    public void print(int count) {
         setWordCount(count);
     }
 }

@@ -12,7 +12,7 @@ public class UserInput implements UserInterface {
     }
 
     @Override
-    public void printWordCount(int count) {
+    public void print(int count) {
         System.out.println(count);
     }
 
