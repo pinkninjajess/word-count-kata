@@ -8,9 +8,9 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class FileInput implements StopperWords {
+public class StopperWordsFileInput implements StopperWords {
 
-    public FileInput() throws IOException {
+    public StopperWordsFileInput() throws IOException {
         String words = new String(Files.readAllBytes(Paths.get("src/main/java/infrastructure/StopperWordsFile")));
         String[] stopperWordsArray = words.split("\\s+");
         this.stopperWords = new ArrayList<>(Arrays.asList(stopperWordsArray));

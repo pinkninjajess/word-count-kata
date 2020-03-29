@@ -2,7 +2,7 @@ package ut.domain;
 
 import domain.StopperWords;
 import domain.WordCounter;
-import infrastructure.FileInput;
+import infrastructure.StopperWordsFileInput;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -15,7 +15,7 @@ public class wordCounterTest {
 
     public WordCounter createWordCounterWith(String userInput) throws IOException {
         ui = new FakeUserInterface();
-        stopperWordsInterface = new FileInput();
+        stopperWordsInterface = new StopperWordsFileInput();
         ui.setUserInput(userInput);
         return new WordCounter(ui, stopperWordsInterface);
     }
