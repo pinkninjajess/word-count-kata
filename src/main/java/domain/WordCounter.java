@@ -17,8 +17,8 @@ public class WordCounter {
     public void countWords() {
         String userInput = ui.getUserInput();
         ArrayList<String> stopperWords = stopperWordsInterface.getStopperWords();
-        int count = countWordsFrom(userInput, stopperWords);
-        ui.print(count);
+        int wordCount = countWordsFrom(userInput, stopperWords);
+        ui.print(wordCount);
     }
 
     private int countWordsFrom(String userInput, ArrayList<String> stopperWords) {

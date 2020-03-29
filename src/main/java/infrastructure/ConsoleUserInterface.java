@@ -4,7 +4,7 @@ import domain.UserInterface;
 
 import java.util.Scanner;
 
-public class UserInput implements UserInterface {
+public class ConsoleUserInterface implements UserInterface {
     @Override
     public String getUserInput() {
         Scanner scanner = new Scanner(System.in);
