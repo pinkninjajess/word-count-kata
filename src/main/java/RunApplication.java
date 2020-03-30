@@ -4,11 +4,9 @@ import domain.WordCounter;
 import infrastructure.ConsoleUserInterface;
 import infrastructure.StopWordsFileInput;
 
-import java.io.IOException;
-
 public class RunApplication {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         UserInterface ui = new ConsoleUserInterface();
         StopWords stopWords = new StopWordsFileInput();
         WordCounter wordCounter = new WordCounter(ui, stopWords);

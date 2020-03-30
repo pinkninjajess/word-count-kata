@@ -5,15 +5,13 @@ import domain.WordCounter;
 import infrastructure.StopWordsFileInput;
 import org.junit.Test;
 
-import java.io.IOException;
-
 import static org.junit.Assert.assertEquals;
 
 public class wordCounterTest {
     FakeUserInterface ui;
     private StopWords stopWordsInterface;
 
-    public WordCounter createWordCounterWith(String userInput) throws IOException {
+    public WordCounter createWordCounterWith(String userInput) {
         ui = new FakeUserInterface();
         stopWordsInterface = new StopWordsFileInput();
         ui.setUserInput(userInput);
@@ -21,7 +19,7 @@ public class wordCounterTest {
     }
 
     @Test
-    public void countWords_oneWord_isCorrect() throws IOException {
+    public void countWords_oneWord_isCorrect() {
         WordCounter wordCounter = createWordCounterWith("Hello");
 
         wordCounter.countWords();
@@ -30,7 +28,7 @@ public class wordCounterTest {
     }
 
     @Test
-    public void countWords_onlyWordsProvided_IsCorrect() throws IOException {
+    public void countWords_onlyWordsProvided_IsCorrect() {
         WordCounter wordCounter = createWordCounterWith("Hello World");
 
         wordCounter.countWords();
@@ -39,7 +37,7 @@ public class wordCounterTest {
     }
 
     @Test
-    public void countWords_wordWithNumbers_countsZero() throws IOException {
+    public void countWords_wordWithNumbers_countsZero() {
         WordCounter wordCounter = createWordCounterWith("H3110");
 
         wordCounter.countWords();
@@ -48,7 +46,7 @@ public class wordCounterTest {
     }
 
     @Test
-    public void countWords_wordWithSpecialSymbols_countsZero() throws IOException {
+    public void countWords_wordWithSpecialSymbols_countsZero() {
         WordCounter wordCounter = createWordCounterWith("He11o");
 
         wordCounter.countWords();
@@ -57,7 +55,7 @@ public class wordCounterTest {
     }
 
     @Test
-    public void countWords_someWithSpecialSymbols_countsWords() throws IOException {
+    public void countWords_someWithSpecialSymbols_countsWords() {
         WordCounter wordCounter = createWordCounterWith("Hello Wor|d");
 
         wordCounter.countWords();
@@ -66,7 +64,7 @@ public class wordCounterTest {
     }
 
     @Test
-    public void countWords_wordWithPeriod_countsNothing() throws IOException {
+    public void countWords_wordWithPeriod_countsNothing() {
         WordCounter wordCounter = createWordCounterWith("Word.");
 
         wordCounter.countWords();
@@ -75,7 +73,7 @@ public class wordCounterTest {
     }
 
     @Test
-    public void countWords_wordWithComma_countsNothing() throws IOException {
+    public void countWords_wordWithComma_countsNothing() {
         WordCounter wordCounter = createWordCounterWith("Word,");
 
         wordCounter.countWords();
@@ -84,7 +82,7 @@ public class wordCounterTest {
     }
 
     @Test
-    public void countWords_wordsAndNonASCII_countsOnlyWords() throws IOException {
+    public void countWords_wordsAndNonASCII_countsOnlyWords() {
         WordCounter wordCounter = createWordCounterWith("H1 th3r3, h0w are y0u? I am doing well");
 
         wordCounter.countWords();
@@ -93,7 +91,7 @@ public class wordCounterTest {
     }
 
     @Test
-    public void countWords_wordsAndStopperWords_countsOnlyWords() throws IOException {
+    public void countWords_wordsAndStopperWords_countsOnlyWords() {
         WordCounter wordCounter = createWordCounterWith("the coffee is on a table");
 
         wordCounter.countWords();
@@ -102,7 +100,7 @@ public class wordCounterTest {
     }
 
     @Test
-    public void countWords_onlyStopperWords_countsOnlyWords() throws IOException {
+    public void countWords_onlyStopperWords_countsOnlyWords() {
         WordCounter wordCounter = createWordCounterWith("the on off a");
 
         wordCounter.countWords();

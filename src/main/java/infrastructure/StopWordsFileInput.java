@@ -12,15 +12,16 @@ public class StopWordsFileInput implements StopWords {
 
     private ArrayList<String> stopWords;
 
-    public StopWordsFileInput() throws IOException {
-        String words = new String(Files.readAllBytes(Paths.get("src/main/java/infrastructure/stopwords.txt")));
-        String[] stopWordsArray = words.split("\\s+");
-        this.stopWords = new ArrayList<>(Arrays.asList(stopWordsArray));
-    }
 
     @Override
     public ArrayList<String> getStopWords() {
-        return stopWords;
+        try {
+            String words = new String(Files.readAllBytes(Paths.get("src/main/java/infrastructure/stopwords.txt")));
+            String[] stopWordsArray = words.split("\\s+");
+            return new ArrayList<>(Arrays.asList(stopWordsArray));
+        } catch (IOException e) {
+            return new ArrayList<String>(Arrays.asList(""));
+        }
     }
 
 }
