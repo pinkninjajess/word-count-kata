@@ -1,8 +1,8 @@
 package ut.domain;
 
-import domain.StopperWords;
+import domain.StopWords;
 import domain.WordCounter;
-import infrastructure.StopperWordsFileInput;
+import infrastructure.StopWordsFileInput;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -11,13 +11,13 @@ import static org.junit.Assert.assertEquals;
 
 public class wordCounterTest {
     FakeUserInterface ui;
-    private StopperWords stopperWordsInterface;
+    private StopWords stopWordsInterface;
 
     public WordCounter createWordCounterWith(String userInput) throws IOException {
         ui = new FakeUserInterface();
-        stopperWordsInterface = new StopperWordsFileInput();
+        stopWordsInterface = new StopWordsFileInput();
         ui.setUserInput(userInput);
-        return new WordCounter(ui, stopperWordsInterface);
+        return new WordCounter(ui, stopWordsInterface);
     }
 
     @Test

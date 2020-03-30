@@ -1,8 +1,8 @@
-import domain.StopperWords;
+import domain.StopWords;
 import domain.UserInterface;
 import domain.WordCounter;
 import infrastructure.ConsoleUserInterface;
-import infrastructure.StopperWordsFileInput;
+import infrastructure.StopWordsFileInput;
 
 import java.io.IOException;
 
@@ -10,8 +10,8 @@ public class RunApplication {
 
     public static void main(String[] args) throws IOException {
         UserInterface ui = new ConsoleUserInterface();
-        StopperWords stopperWords = new StopperWordsFileInput();
-        WordCounter wordCounter = new WordCounter(ui, stopperWords);
+        StopWords stopWords = new StopWordsFileInput();
+        WordCounter wordCounter = new WordCounter(ui, stopWords);
         wordCounter.countWords();
     }
 }

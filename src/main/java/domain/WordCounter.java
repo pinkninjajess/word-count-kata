@@ -7,16 +7,16 @@ import java.util.Arrays;
 public class WordCounter {
 
     private UserInterface ui;
-    private StopperWords stopperWordsInterface;
+    private StopWords stopWordsInterface;
 
-    public WordCounter(UserInterface ui, StopperWords stopperWordsInterface) {
+    public WordCounter(UserInterface ui, StopWords stopWordsInterface) {
         this.ui = ui;
-        this.stopperWordsInterface = stopperWordsInterface;
+        this.stopWordsInterface = stopWordsInterface;
     }
 
     public void countWords() {
         String userInput = ui.getUserInput();
-        ArrayList<String> stopperWords = stopperWordsInterface.getStopperWords();
+        ArrayList<String> stopperWords = stopWordsInterface.getStopWords();
         int wordCount = countWordsFrom(userInput, stopperWords);
         ui.print(wordCount);
     }
