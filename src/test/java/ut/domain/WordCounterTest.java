@@ -2,24 +2,17 @@ package ut.domain;
 
 import domain.StopWords;
 import domain.WordCounter;
-import infrastructure.StopWordsFileInput;
 import org.junit.Test;
+
+import java.util.Arrays;
 
 import static org.junit.Assert.assertEquals;
 
 public class WordCounterTest {
-    FakeUserInterface ui;
-    private StopWords stopWordsInterface;
-
-    public WordCounter createWordCounterWith(String userInput) {
-        ui = new FakeUserInterface();
-        stopWordsInterface = new StopWordsFileInput();
-        ui.setUserInput(userInput);
-        return new WordCounter(ui, stopWordsInterface);
-    }
+    private final FakeUserInterface ui = new FakeUserInterface();
 
     @Test
-    public void countWords_oneWord_isCorrect() {
+    public void countWords_oneWord_countReturnsOne() {
         WordCounter wordCounter = createWordCounterWith("Hello");
 
         wordCounter.countWords();
@@ -28,7 +21,7 @@ public class WordCounterTest {
     }
 
     @Test
-    public void countWords_onlyWordsProvided_IsCorrect() {
+    public void countWords_twoWordsSeparatedByWhiteSpace_countReturnsTwo() {
         WordCounter wordCounter = createWordCounterWith("Hello World");
 
         wordCounter.countWords();
@@ -37,7 +30,7 @@ public class WordCounterTest {
     }
 
     @Test
-    public void countWords_wordWithNumbers_countsZero() {
+    public void countWords_wordContainingNumbers_countReturnsZero() {
         WordCounter wordCounter = createWordCounterWith("H3110");
 
         wordCounter.countWords();
@@ -46,8 +39,8 @@ public class WordCounterTest {
     }
 
     @Test
-    public void countWords_wordWithSpecialSymbols_countsZero() {
-        WordCounter wordCounter = createWordCounterWith("He11o");
+    public void countWords_wordContainingSpecialCharacter_countReturnsZero() {
+        WordCounter wordCounter = createWordCounterWith("Wor|d");
 
         wordCounter.countWords();
 
@@ -55,16 +48,7 @@ public class WordCounterTest {
     }
 
     @Test
-    public void countWords_someWithSpecialSymbols_countsWords() {
-        WordCounter wordCounter = createWordCounterWith("Hello Wor|d");
-
-        wordCounter.countWords();
-
-        assertEquals(1, ui.getWordCount());
-    }
-
-    @Test
-    public void countWords_wordWithPeriod_countsNothing() {
+    public void countWords_wordWithPeriod_countReturnsZero() {
         WordCounter wordCounter = createWordCounterWith("Word.");
 
         wordCounter.countWords();
@@ -73,7 +57,7 @@ public class WordCounterTest {
     }
 
     @Test
-    public void countWords_wordWithComma_countsNothing() {
+    public void countWords_wordWithComma_countReturnsZero() {
         WordCounter wordCounter = createWordCounterWith("Word,");
 
         wordCounter.countWords();
@@ -82,29 +66,32 @@ public class WordCounterTest {
     }
 
     @Test
-    public void countWords_wordsAndNonASCII_countsOnlyWords() {
-        WordCounter wordCounter = createWordCounterWith("H1 th3r3, h0w are y0u? I am doing well");
+    public void countWords_wordsAndStopWords_countReturnsThree() {
+        StopWords stopWordsFakeInterface = () -> Arrays.asList("a", "the", "on", "off");
+        FakeUserInterface fakeUserInterface = new FakeUserInterface();
+        fakeUserInterface.setUserInput("the coffee is on a table");
+        WordCounter wordCounterForStopWordsTest = new WordCounter(fakeUserInterface, stopWordsFakeInterface);
 
-        wordCounter.countWords();
+        wordCounterForStopWordsTest.countWords();
 
-        assertEquals(5, ui.getWordCount());
+        assertEquals(3, fakeUserInterface.getWordCount());
     }
 
     @Test
-    public void countWords_wordsAndStopperWords_countsOnlyWords() {
-        WordCounter wordCounter = createWordCounterWith("the coffee is on a table");
+    public void countWords_onlyStopWords_countReturnsZero() {
+        StopWords stopWordsFakeInterface = () -> Arrays.asList("a", "the", "on", "off");
+        FakeUserInterface fakeUserInterface = new FakeUserInterface();
+        fakeUserInterface.setUserInput("the on off a");
+        WordCounter wordCounterForStopWordsTest = new WordCounter(fakeUserInterface, stopWordsFakeInterface);
 
-        wordCounter.countWords();
+        wordCounterForStopWordsTest.countWords();
 
-        assertEquals(3, ui.getWordCount());
+        assertEquals(0, fakeUserInterface.getWordCount());
     }
 
-    @Test
-    public void countWords_onlyStopperWords_countsOnlyWords() {
-        WordCounter wordCounter = createWordCounterWith("the on off a");
-
-        wordCounter.countWords();
-
-        assertEquals(0, ui.getWordCount());
+    public WordCounter createWordCounterWith(String userInput) {
+        StopWords stopWordsInterface = new FakeStopWordsFileInput();
+        ui.setUserInput(userInput);
+        return new WordCounter(ui, stopWordsInterface);
     }
 }
