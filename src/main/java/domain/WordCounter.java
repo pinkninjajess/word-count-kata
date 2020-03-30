@@ -5,7 +5,6 @@ import java.util.Arrays;
 import java.util.List;
 
 public class WordCounter {
-
     private UserInterface ui;
     private StopWords stopWordsInterface;
 
@@ -31,6 +30,4 @@ public class WordCounter {
     private Boolean isAWord(String input) {
         return input.matches("[a-zA-Z]+");
     }
-
-
 }

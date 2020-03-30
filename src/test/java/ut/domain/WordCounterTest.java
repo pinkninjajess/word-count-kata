@@ -7,7 +7,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-public class wordCounterTest {
+public class WordCounterTest {
     FakeUserInterface ui;
     private StopWords stopWordsInterface;
 
@@ -107,5 +107,4 @@ public class wordCounterTest {
 
         assertEquals(0, ui.getWordCount());
     }
-
 }

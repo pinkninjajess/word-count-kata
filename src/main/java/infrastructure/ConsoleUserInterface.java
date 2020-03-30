@@ -16,6 +16,4 @@ public class ConsoleUserInterface implements UserInterface {
     public void print(int count) {
         System.out.println("Number of words: " + count);
     }
-
-
 }
