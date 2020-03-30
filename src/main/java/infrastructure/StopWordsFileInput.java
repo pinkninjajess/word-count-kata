@@ -7,20 +7,25 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class StopWordsFileInput implements StopWords {
 
     private ArrayList<String> stopWords;
-
+    private static final Logger LOGGER = Logger.getLogger(StopWordsFileInput.class.getName());
 
     @Override
-    public ArrayList<String> getStopWords() {
+    public List<String> getStopWords() {
         try {
-            String words = new String(Files.readAllBytes(Paths.get("src/main/java/infrastructure/stopwords.txt")));
+            String words = new String(Files.readAllBytes(Paths.get("src/main/java/infrastructure/stopwordse.txt")));
             String[] stopWordsArray = words.split("\\s+");
             return new ArrayList<>(Arrays.asList(stopWordsArray));
         } catch (IOException e) {
-            return new ArrayList<String>(Arrays.asList(""));
+            LOGGER.log(Level.WARNING, "Loading of stop words from file failed");
+            return Collections.emptyList();
         }
     }
 

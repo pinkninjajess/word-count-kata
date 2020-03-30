@@ -1,7 +1,7 @@
 package domain;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public interface StopWords {
-    ArrayList<String> getStopWords();
+    List<String> getStopWords();
 }

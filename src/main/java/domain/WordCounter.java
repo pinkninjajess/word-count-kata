@@ -1,8 +1,8 @@
 package domain;
 
 
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class WordCounter {
 
@@ -16,12 +16,12 @@ public class WordCounter {
 
     public void countWords() {
         String userInput = ui.getUserInput();
-        ArrayList<String> stopperWords = stopWordsInterface.getStopWords();
+        List<String> stopperWords = stopWordsInterface.getStopWords();
         int wordCount = countWordsFrom(userInput, stopperWords);
         ui.print(wordCount);
     }
 
-    private int countWordsFrom(String userInput, ArrayList<String> stopperWords) {
+    private int countWordsFrom(String userInput, List<String> stopperWords) {
         return (int) Arrays.stream(userInput.split("\\s+"))
                 .filter(this::isAWord)
                 .filter(word -> !stopperWords.contains(word))
