@@ -1,4 +1,4 @@
-package domain;
+package wordcount.domain;
 
 import java.util.List;
 

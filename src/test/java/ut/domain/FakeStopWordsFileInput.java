@@ -1,6 +1,6 @@
 package ut.domain;
 
-import domain.StopWords;
+import wordcount.domain.StopWords;
 
 import java.util.Collections;
 import java.util.List;

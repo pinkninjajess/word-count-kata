@@ -1,8 +1,8 @@
 package ut.domain;
 
-import domain.StopWords;
-import domain.WordCounter;
 import org.junit.Test;
+import wordcount.domain.StopWords;
+import wordcount.domain.WordCounter;
 
 import java.util.Arrays;
 
