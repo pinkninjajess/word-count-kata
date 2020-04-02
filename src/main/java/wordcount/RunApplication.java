@@ -1,8 +1,10 @@
-import domain.StopWords;
-import domain.UserInterface;
-import domain.WordCounter;
-import infrastructure.ConsoleUserInterface;
-import infrastructure.StopWordsFileInput;
+package wordcount;
+
+import wordcount.domain.StopWords;
+import wordcount.domain.UserInterface;
+import wordcount.domain.WordCounter;
+import wordcount.infrastructure.ConsoleUserInterface;
+import wordcount.infrastructure.StopWordsFileInput;
 
 public class RunApplication {
 

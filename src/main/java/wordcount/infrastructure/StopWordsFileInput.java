@@ -1,7 +1,7 @@
-package infrastructure;
+package wordcount.infrastructure;
 
-import domain.StopWords;
 import org.apache.commons.io.IOUtils;
+import wordcount.domain.StopWords;
 
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;

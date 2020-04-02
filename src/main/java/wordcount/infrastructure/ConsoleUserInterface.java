@@ -1,6 +1,6 @@
-package infrastructure;
+package wordcount.infrastructure;
 
-import domain.UserInterface;
+import wordcount.domain.UserInterface;
 
 import java.util.Scanner;
 
@@ -14,6 +14,6 @@ public class ConsoleUserInterface implements UserInterface {
 
     @Override
     public void print(int count) {
-        System.out.println("Number of words: " + count);
+        System.out.print("Number of words: " + count);
     }
 }
