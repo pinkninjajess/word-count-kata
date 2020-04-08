@@ -1,21 +1,20 @@
 package wordcount.domain;
 
-
 import java.util.Arrays;
 import java.util.List;
 
 public class WordCounter {
     private UserInterface ui;
-    private StopWords stopWordsInterface;
+    private FileInput stopWordsInterface;
 
-    public WordCounter(UserInterface ui, StopWords stopWordsInterface) {
+    public WordCounter(UserInterface ui, FileInput stopWordsInterface) {
         this.ui = ui;
         this.stopWordsInterface = stopWordsInterface;
     }
 
     public void countWords() {
         String userInput = ui.getUserInput();
-        List<String> stopperWords = stopWordsInterface.getStopWords();
+        List<String> stopperWords = stopWordsInterface.getWords();
         int wordCount = countWordsFrom(userInput, stopperWords);
         ui.print(wordCount);
     }

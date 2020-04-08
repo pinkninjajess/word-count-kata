@@ -1,7 +1,7 @@
 package ut.domain;
 
 import org.junit.Test;
-import wordcount.domain.StopWords;
+import wordcount.domain.FileInput;
 import wordcount.domain.WordCounter;
 
 import java.util.Arrays;
@@ -67,7 +67,8 @@ public class WordCounterTest {
 
     @Test
     public void countWords_wordsAndStopWords_countReturnsThree() {
-        StopWords stopWordsFakeInterface = () -> Arrays.asList("a", "the", "on", "off");
+        FakeFileInput stopWordsFakeInterface = new FakeFileInput();
+        stopWordsFakeInterface.setWords(Arrays.asList("a", "the", "on", "off"));
         FakeUserInterface fakeUserInterface = new FakeUserInterface();
         fakeUserInterface.setUserInput("the coffee is on a table");
         WordCounter wordCounterForStopWordsTest = new WordCounter(fakeUserInterface, stopWordsFakeInterface);
@@ -79,7 +80,8 @@ public class WordCounterTest {
 
     @Test
     public void countWords_onlyStopWords_countReturnsZero() {
-        StopWords stopWordsFakeInterface = () -> Arrays.asList("a", "the", "on", "off");
+        FakeFileInput stopWordsFakeInterface = new FakeFileInput();
+        stopWordsFakeInterface.setWords(Arrays.asList("a", "the", "on", "off"));
         FakeUserInterface fakeUserInterface = new FakeUserInterface();
         fakeUserInterface.setUserInput("the on off a");
         WordCounter wordCounterForStopWordsTest = new WordCounter(fakeUserInterface, stopWordsFakeInterface);
@@ -90,7 +92,7 @@ public class WordCounterTest {
     }
 
     public WordCounter createWordCounterWith(String userInput) {
-        StopWords stopWordsInterface = new FakeStopWordsFileInput();
+        FileInput stopWordsInterface = new FakeFileInput();
         ui.setUserInput(userInput);
         return new WordCounter(ui, stopWordsInterface);
     }
