@@ -32,4 +32,8 @@ public class StopWordsFileInput implements FileInput {
     public void setFilePath(String filePath) {
         this.filePath = filePath;
     }
+
+    public String getFilePath() {
+        return this.filePath;
+    }
 }
