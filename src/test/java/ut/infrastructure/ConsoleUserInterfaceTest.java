@@ -24,15 +24,6 @@ public class ConsoleUserInterfaceTest {
         System.setOut(new PrintStream(testOut));
     }
 
-    private void provideInput(String data) {
-        testIn = new ByteArrayInputStream(data.getBytes());
-        System.setIn(testIn);
-    }
-
-    private String getOutput() {
-        return testOut.toString();
-    }
-
     @After
     public void restoreSystemInputOutput() {
         System.setIn(systemIn);
@@ -76,5 +67,14 @@ public class ConsoleUserInterfaceTest {
         consoleUserInterface.print(22);
 
         assertEquals("Number of words: 22", getOutput());
+    }
+
+    private void provideInput(String data) {
+        testIn = new ByteArrayInputStream(data.getBytes());
+        System.setIn(testIn);
+    }
+
+    private String getOutput() {
+        return testOut.toString();
     }
 }
