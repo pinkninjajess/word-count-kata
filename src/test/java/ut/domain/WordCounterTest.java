@@ -69,9 +69,10 @@ public class WordCounterTest {
     public void countWords_wordsAndStopWords_countReturnsThree() {
         FakeFileInput stopWordsFakeInterface = new FakeFileInput();
         stopWordsFakeInterface.setWords(Arrays.asList("a", "the", "on", "off"));
+        FileInput userFileInput = new FakeFileInput();
         FakeUserInterface fakeUserInterface = new FakeUserInterface();
         fakeUserInterface.setUserInput("the coffee is on a table");
-        WordCounter wordCounterForStopWordsTest = new WordCounter(fakeUserInterface, stopWordsFakeInterface);
+        WordCounter wordCounterForStopWordsTest = new WordCounter(fakeUserInterface, stopWordsFakeInterface, userFileInput);
 
         wordCounterForStopWordsTest.countWords();
 
@@ -82,18 +83,49 @@ public class WordCounterTest {
     public void countWords_onlyStopWords_countReturnsZero() {
         FakeFileInput stopWordsFakeInterface = new FakeFileInput();
         stopWordsFakeInterface.setWords(Arrays.asList("a", "the", "on", "off"));
+        FileInput userFileInput = new FakeFileInput();
         FakeUserInterface fakeUserInterface = new FakeUserInterface();
         fakeUserInterface.setUserInput("the on off a");
-        WordCounter wordCounterForStopWordsTest = new WordCounter(fakeUserInterface, stopWordsFakeInterface);
+        WordCounter wordCounterForStopWordsTest = new WordCounter(fakeUserInterface, stopWordsFakeInterface, userFileInput);
 
         wordCounterForStopWordsTest.countWords();
 
         assertEquals(0, fakeUserInterface.getWordCount());
     }
 
+    @Test
+    public void countWords_wordsFromFakeUserProvidedFile_countReturnsTwo() {
+        FakeFileInput stopWordsFakeInterface = new FakeFileInput();
+        FakeUserInterface fakeUserInterface = new FakeUserInterface();
+        fakeUserInterface.setUserInput("fakefileinput.txt");
+        FakeFileInput fakeUserFileInput = new FakeFileInput();
+        fakeUserFileInput.setWords(Arrays.asList("hello", "world"));
+        WordCounter wordCounterForStopWordsTest = new WordCounter(fakeUserInterface, stopWordsFakeInterface, fakeUserFileInput);
+
+        wordCounterForStopWordsTest.countWords();
+
+        assertEquals(2, fakeUserInterface.getWordCount());
+    }
+
+    @Test
+    public void countWords_wordsAndStopWordsFromFakeUserProvidedFile_countReturnsFour() {
+        FakeFileInput stopWordsFakeInterface = new FakeFileInput();
+        stopWordsFakeInterface.setWords(Arrays.asList("the", "on", "off", "a"));
+        FakeUserInterface fakeUserInterface = new FakeUserInterface();
+        fakeUserInterface.setUserInput("fakefileinput.txt");
+        FakeFileInput fakeUserFileInput = new FakeFileInput();
+        fakeUserFileInput.setWords(Arrays.asList("mary", "had", "a", "little", "lamb"));
+        WordCounter wordCounterForStopWordsTest = new WordCounter(fakeUserInterface, stopWordsFakeInterface, fakeUserFileInput);
+
+        wordCounterForStopWordsTest.countWords();
+
+        assertEquals(4, fakeUserInterface.getWordCount());
+    }
+
     public WordCounter createWordCounterWith(String userInput) {
         FileInput stopWordsInterface = new FakeFileInput();
+        FileInput userFileInput = new FakeFileInput();
         ui.setUserInput(userInput);
-        return new WordCounter(ui, stopWordsInterface);
+        return new WordCounter(ui, stopWordsInterface, userFileInput);
     }
 }
