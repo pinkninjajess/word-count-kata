@@ -13,7 +13,7 @@ public class StopWordsFileInputTest {
     @Test
     public void getStopWords_fileWithWordsProvided_correctNumberOfWordsLoaded() {
         stopWordsFileInput = new StopWordsFileInput();
-        stopWordsFileInput.setFilePath("/testfile.txt");
+        stopWordsFileInput.setFilePath("testfile.txt");
 
         List<String> stopWords = stopWordsFileInput.getWords();
 
@@ -22,7 +22,7 @@ public class StopWordsFileInputTest {
 
     @Test
     public void setFilePath_filePathProvided_correctFilePathIsSet() {
-        String filePath = "/testfile.txt";
+        String filePath = "testfile.txt";
         stopWordsFileInput = new StopWordsFileInput();
         stopWordsFileInput.setFilePath(filePath);
 
