@@ -10,8 +10,8 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class StopWordsFileInput implements FileInput {
-    private static final Logger LOGGER = Logger.getLogger(StopWordsFileInput.class.getName());
+public class WordsFileInput implements FileInput {
+    private static final Logger LOGGER = Logger.getLogger(WordsFileInput.class.getName());
     private String filePath;
 
     @Override
