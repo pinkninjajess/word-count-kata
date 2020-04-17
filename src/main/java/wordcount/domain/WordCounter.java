@@ -22,12 +22,10 @@ public class WordCounter {
     }
 
     private String getUserInput() {
-        String userInput = ui.getUserInput();
-        if (userInput.endsWith(".txt")) {
-            userFileInput.setFilePath(userInput);
+        if (!userFileInput.getWords().isEmpty()) {
             return String.join(" ", userFileInput.getWords());
         } else {
-            return userInput;
+            return ui.getUserInput();
         }
     }
 
