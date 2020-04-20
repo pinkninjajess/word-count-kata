@@ -30,12 +30,12 @@ public class WordCounterTest {
     }
 
     @Test
-    public void countWords_fourWordsWithDashesSeparatedByWhiteSpace_countReturnsFour() {
+    public void countWords_fourWordsWithDashesSeparatedByWhiteSpace_countReturnsTwo() {
         WordCounter wordCounter = createWordCounterWith("Sally-Anne Bob-Town");
 
         wordCounter.countWords();
 
-        assertEquals(4, ui.getWordCount());
+        assertEquals(2, ui.getWordCount());
     }
 
     @Test
@@ -72,6 +72,15 @@ public class WordCounterTest {
         wordCounter.countWords();
 
         assertEquals(1, ui.getWordCount());
+    }
+
+    @Test
+    public void countWords_repeatedWords_uniqueCountReturnsOne() {
+        WordCounter wordCounter = createWordCounterWith("hi hi");
+
+        wordCounter.countWords();
+
+        assertEquals(1, ui.getUniqueWordCount());
     }
 
     @Test
@@ -142,8 +151,8 @@ public class WordCounterTest {
 
         wordCounter.countWords();
 
-        assertEquals(9, fakeUserInterface.getWordCount());
-        assertEquals(7, fakeUserInterface.getUniqueWordCount());
+        assertEquals(7, fakeUserInterface.getWordCount());
+        assertEquals(6, fakeUserInterface.getUniqueWordCount());
     }
 
     public WordCounter createWordCounterWith(String userInput) {

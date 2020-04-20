@@ -48,7 +48,7 @@ public class RunApplicationTest {
 
         RunApplication.main(new String[0]);
 
-        assertEquals("Enter text: Number of words: 9, unique: 7", getOutput());
+        assertEquals("Enter text: Number of words: 7, unique: 6", getOutput());
     }
 
     @Test
@@ -68,7 +68,7 @@ public class RunApplicationTest {
 
         RunApplication.main(arguments);
 
-        assertEquals("Number of words: 9, unique: 7", getOutput());
+        assertEquals("Number of words: 7, unique: 6", getOutput());
     }
 
     private void provideInput(String data) {

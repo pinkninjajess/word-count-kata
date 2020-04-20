@@ -34,7 +34,7 @@ public class WordCounter {
     }
 
     private String[] getFilteredWords(String userInput, List<String> stopWords) {
-        Stream<String> stream = Arrays.stream(userInput.split("[\\s-.,]+"))
+        Stream<String> stream = Arrays.stream(userInput.split("[\\s.,]+"))
                 .filter(this::isAWord)
                 .filter(word -> !stopWords.contains(word));
 
@@ -51,6 +51,6 @@ public class WordCounter {
     }
 
     private Boolean isAWord(String input) {
-        return input.matches("[a-zA-Z]+");
+        return input.matches("[a-zA-Z-]+");
     }
 }
