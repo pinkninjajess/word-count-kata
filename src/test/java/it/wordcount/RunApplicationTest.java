@@ -38,7 +38,17 @@ public class RunApplicationTest {
 
         RunApplication.main(new String[0]);
 
-        assertEquals("Enter text: Number of words: 2", getOutput());
+        assertEquals("Enter text: Number of words: 2, unique: 2", getOutput());
+    }
+
+    @Test
+    public void runApplication_NineWordsProvidedSevenUniqueWordsProvided_SystemOutExpectedWithCorrectNumOfWords() {
+        String input = "Humpty-Dumpty sat on a wall. Humpty-Dumpty had a great fall.";
+        provideInput(input);
+
+        RunApplication.main(new String[0]);
+
+        assertEquals("Enter text: Number of words: 9, unique: 7", getOutput());
     }
 
     @Test
@@ -48,7 +58,17 @@ public class RunApplicationTest {
 
         RunApplication.main(arguments);
 
-        assertEquals("Number of words: 4", getOutput());
+        assertEquals("Number of words: 4, unique: 4", getOutput());
+    }
+
+    @Test
+    public void runApplication_fileContainingDashesProvided_SystemOutExpectedWithCorrectNumOfWords() {
+        String[] arguments = new String[1];
+        arguments[0] = "mytextwithdashes.txt";
+
+        RunApplication.main(arguments);
+
+        assertEquals("Number of words: 9, unique: 7", getOutput());
     }
 
     private void provideInput(String data) {

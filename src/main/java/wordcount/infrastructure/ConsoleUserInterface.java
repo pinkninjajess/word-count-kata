@@ -16,4 +16,9 @@ public class ConsoleUserInterface implements UserInterface {
     public void print(int count) {
         System.out.print("Number of words: " + count);
     }
+
+    @Override
+    public void printUnique(int count) {
+        System.out.print(", unique: " + count);
+    }
 }

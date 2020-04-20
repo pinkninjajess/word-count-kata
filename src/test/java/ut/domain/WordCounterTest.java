@@ -30,6 +30,15 @@ public class WordCounterTest {
     }
 
     @Test
+    public void countWords_fourWordsWithDashesSeparatedByWhiteSpace_countReturnsFour() {
+        WordCounter wordCounter = createWordCounterWith("Sally-Anne Bob-Town");
+
+        wordCounter.countWords();
+
+        assertEquals(4, ui.getWordCount());
+    }
+
+    @Test
     public void countWords_wordContainingNumbers_countReturnsZero() {
         WordCounter wordCounter = createWordCounterWith("H3110");
 
@@ -48,21 +57,21 @@ public class WordCounterTest {
     }
 
     @Test
-    public void countWords_wordWithPeriod_countReturnsZero() {
+    public void countWords_wordWithPeriod_countReturnsOne() {
         WordCounter wordCounter = createWordCounterWith("Word.");
 
         wordCounter.countWords();
 
-        assertEquals(0, ui.getWordCount());
+        assertEquals(1, ui.getWordCount());
     }
 
     @Test
-    public void countWords_wordWithComma_countReturnsZero() {
+    public void countWords_wordWithComma_countReturnsOne() {
         WordCounter wordCounter = createWordCounterWith("Word,");
 
         wordCounter.countWords();
 
-        assertEquals(0, ui.getWordCount());
+        assertEquals(1, ui.getWordCount());
     }
 
     @Test
@@ -120,6 +129,21 @@ public class WordCounterTest {
         wordCounterForStopWordsTest.countWords();
 
         assertEquals(4, fakeUserInterface.getWordCount());
+    }
+
+    @Test
+    public void countWords_wordsStopWordsAndDashes_totalCountReturnsNineUniqueCountReturnsSeven() {
+        FakeFileInput stopWordsFakeInterface = new FakeFileInput();
+        FakeFileInput fakeFileInput = new FakeFileInput();
+        stopWordsFakeInterface.setWords(Arrays.asList("the", "a", "on", "off"));
+        FakeUserInterface fakeUserInterface = new FakeUserInterface();
+        fakeUserInterface.setUserInput("Humpty-Dumpty sat on a wall. Humpty-Dumpty had a great fall.");
+        WordCounter wordCounter = new WordCounter(fakeUserInterface, stopWordsFakeInterface, fakeFileInput);
+
+        wordCounter.countWords();
+
+        assertEquals(9, fakeUserInterface.getWordCount());
+        assertEquals(7, fakeUserInterface.getUniqueWordCount());
     }
 
     public WordCounter createWordCounterWith(String userInput) {
