@@ -2,6 +2,7 @@ package wordcount.domain;
 
 import java.text.DecimalFormat;
 import java.util.Arrays;
+import java.util.IntSummaryStatistics;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -23,7 +24,7 @@ public class WordCounter {
         String[] words = getFilteredWords(userInput, stopWords);
         int wordCount = countTotalWordsFrom(words);
         int uniqueWordCount = countUniqueWordsFrom(words);
-        double averageCharacterCount = countAverageWordLengthFrom(words, wordCount);
+        double averageCharacterCount = countAverageWordLengthFrom(words);
         ui.print(wordCount);
         ui.printUnique(uniqueWordCount);
         ui.printAverage(averageCharacterCount);
@@ -54,17 +55,11 @@ public class WordCounter {
                 .distinct().count();
     }
 
-    private double countAverageWordLengthFrom(String[] words, int numWords) {
-        int numChars = 0;
-        double average = 0;
-
-        for (String word : words) {
-            numChars += word.length();
-        }
-        if (numChars != 0) {
-            average = (double) numChars / (double) numWords;
-        }
-        return Double.parseDouble(df2.format(average));
+    private double countAverageWordLengthFrom(String[] words) {
+        IntSummaryStatistics statistics = Arrays.stream(words)
+                .mapToInt(String::length)
+                .summaryStatistics();
+        return Double.parseDouble(df2.format(statistics.getAverage()));
     }
 
     private Boolean isAWord(String input) {
