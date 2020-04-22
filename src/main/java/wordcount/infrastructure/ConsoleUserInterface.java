@@ -26,4 +26,12 @@ public class ConsoleUserInterface implements UserInterface {
     public void printAverage(double wordLength) {
         System.out.print("; average word length: " + wordLength + " characters");
     }
+
+    @Override
+    public void printIndex(String[] words) {
+        System.out.print("\nIndex:");
+        for (String word : words) {
+            System.out.print("\n" + word);
+        }
+    }
 }

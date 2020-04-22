@@ -8,4 +8,6 @@ public interface UserInterface {
     void printUnique(int count);
 
     void printAverage(double wordLength);
+
+    void printIndex(String[] words);
 }

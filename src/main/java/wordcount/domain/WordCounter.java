@@ -22,12 +22,14 @@ public class WordCounter {
         String userInput = getUserInput();
         List<String> stopWords = stopWordsInterface.getWords();
         String[] words = getFilteredWords(userInput, stopWords);
+        String[] indexWords = getUniqueWordsFrom(words);
         int wordCount = countTotalFrom(words);
         int uniqueWordCount = countTotalFrom(getUniqueWordsFrom(words));
         double averageCharacterCount = countAverageWordLengthFrom(words);
         ui.print(wordCount);
         ui.printUnique(uniqueWordCount);
         ui.printAverage(averageCharacterCount);
+        ui.printIndex(indexWords);
     }
 
     private String getUserInput() {
@@ -52,7 +54,8 @@ public class WordCounter {
 
     private String[] getUniqueWordsFrom(String[] words) {
         Stream<String> stream = Arrays.stream(words)
-                .distinct();
+                .distinct()
+                .sorted(String::compareToIgnoreCase);
         return stream.toArray(String[]::new);
     }
 
