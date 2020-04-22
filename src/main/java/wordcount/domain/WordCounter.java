@@ -7,10 +7,10 @@ import java.util.List;
 import java.util.stream.Stream;
 
 public class WordCounter {
-    private FileInput userFileInput;
-    private UserInterface ui;
-    private FileInput stopWordsInterface;
-    private static DecimalFormat df2 = new DecimalFormat("#.##");
+    private static final DecimalFormat df2 = new DecimalFormat("#.##");
+    private final FileInput userFileInput;
+    private final UserInterface ui;
+    private final FileInput stopWordsInterface;
 
     public WordCounter(UserInterface ui, FileInput stopWordsInterface, FileInput userFileInput) {
         this.ui = ui;
@@ -22,8 +22,8 @@ public class WordCounter {
         String userInput = getUserInput();
         List<String> stopWords = stopWordsInterface.getWords();
         String[] words = getFilteredWords(userInput, stopWords);
-        int wordCount = countTotalWordsFrom(words);
-        int uniqueWordCount = countUniqueWordsFrom(words);
+        int wordCount = countTotalFrom(words);
+        int uniqueWordCount = countTotalFrom(getUniqueWordsFrom(words));
         double averageCharacterCount = countAverageWordLengthFrom(words);
         ui.print(wordCount);
         ui.printUnique(uniqueWordCount);
@@ -46,13 +46,14 @@ public class WordCounter {
         return stream.toArray(String[]::new);
     }
 
-    private int countTotalWordsFrom(String[] words) {
+    private int countTotalFrom(String[] words) {
         return words.length;
     }
 
-    private int countUniqueWordsFrom(String[] words) {
-        return (int) Arrays.stream(words)
-                .distinct().count();
+    private String[] getUniqueWordsFrom(String[] words) {
+        Stream<String> stream = Arrays.stream(words)
+                .distinct();
+        return stream.toArray(String[]::new);
     }
 
     private double countAverageWordLengthFrom(String[] words) {
