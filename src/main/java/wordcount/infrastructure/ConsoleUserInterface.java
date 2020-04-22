@@ -21,4 +21,9 @@ public class ConsoleUserInterface implements UserInterface {
     public void printUnique(int count) {
         System.out.print(", unique: " + count);
     }
+
+    @Override
+    public void printAverage(double wordLength) {
+        System.out.print("; average word length: " + wordLength + " characters");
+    }
 }

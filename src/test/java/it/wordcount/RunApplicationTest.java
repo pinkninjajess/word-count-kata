@@ -38,7 +38,7 @@ public class RunApplicationTest {
 
         RunApplication.main(new String[0]);
 
-        assertEquals("Enter text: Number of words: 2, unique: 2", getOutput());
+        assertEquals("Enter text: Number of words: 2, unique: 2; average word length: 5.0 characters", getOutput());
     }
 
     @Test
@@ -48,7 +48,7 @@ public class RunApplicationTest {
 
         RunApplication.main(new String[0]);
 
-        assertEquals("Enter text: Number of words: 7, unique: 6", getOutput());
+        assertEquals("Enter text: Number of words: 7, unique: 6; average word length: 6.43 characters", getOutput());
     }
 
     @Test
@@ -58,7 +58,7 @@ public class RunApplicationTest {
 
         RunApplication.main(arguments);
 
-        assertEquals("Number of words: 4, unique: 4", getOutput());
+        assertEquals("Number of words: 4, unique: 4; average word length: 4.25 characters", getOutput());
     }
 
     @Test
@@ -68,7 +68,7 @@ public class RunApplicationTest {
 
         RunApplication.main(arguments);
 
-        assertEquals("Number of words: 7, unique: 6", getOutput());
+        assertEquals("Number of words: 7, unique: 6; average word length: 6.43 characters", getOutput());
     }
 
     private void provideInput(String data) {

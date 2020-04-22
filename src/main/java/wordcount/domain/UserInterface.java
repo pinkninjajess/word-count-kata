@@ -6,4 +6,6 @@ public interface UserInterface {
     void print(int count);
 
     void printUnique(int count);
+
+    void printAverage(double wordLength);
 }

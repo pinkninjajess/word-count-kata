@@ -6,6 +6,15 @@ public class FakeUserInterface implements UserInterface {
     private String userInput;
     private int wordCount;
     private int uniqueWordCount;
+    private double averageWordLength;
+
+    public double getAverageWordLength() {
+        return averageWordLength;
+    }
+
+    public void setAverageWordLength(double averageWordLength) {
+        this.averageWordLength = averageWordLength;
+    }
 
     public int getUniqueWordCount() {
         return uniqueWordCount;
@@ -40,5 +49,10 @@ public class FakeUserInterface implements UserInterface {
     @Override
     public void printUnique(int count) {
         setUniqueWordCount(count);
+    }
+
+    @Override
+    public void printAverage(double wordLength) {
+        setAverageWordLength(wordLength);
     }
 }
