@@ -9,27 +9,31 @@ import java.util.stream.Stream;
 public class WordCounter {
     private static final DecimalFormat df2 = new DecimalFormat("#.##");
     private final FileInput userFileInput;
+    private final boolean showIndex;
     private final UserInterface ui;
     private final FileInput stopWordsInterface;
 
-    public WordCounter(UserInterface ui, FileInput stopWordsInterface, FileInput userFileInput) {
+    public WordCounter(UserInterface ui, FileInput stopWordsInterface, FileInput userFileInput, Boolean showIndex) {
         this.ui = ui;
         this.stopWordsInterface = stopWordsInterface;
         this.userFileInput = userFileInput;
+        this.showIndex = showIndex;
     }
 
     public void countWords() {
         String userInput = getUserInput();
         List<String> stopWords = stopWordsInterface.getWords();
         String[] words = getFilteredWords(userInput, stopWords);
-        String[] indexWords = getUniqueWordsFrom(words);
         int wordCount = countTotalFrom(words);
         int uniqueWordCount = countTotalFrom(getUniqueWordsFrom(words));
         double averageCharacterCount = countAverageWordLengthFrom(words);
         ui.print(wordCount);
         ui.printUnique(uniqueWordCount);
         ui.printAverage(averageCharacterCount);
-        ui.printIndex(indexWords);
+        if (showIndex) {
+            String[] indexWords = getUniqueWordsFrom(words);
+            ui.printIndex(indexWords);
+        }
     }
 
     private String getUserInput() {

@@ -71,6 +71,18 @@ public class RunApplicationTest {
         assertEquals("Number of words: 7, unique: 6; average word length: 6.43 characters", getOutput());
     }
 
+    @Test
+    public void runApplication_indexRequested_SystemOutExpectedWithIndexOfWords() {
+        String[] arguments = new String[1];
+        arguments[0] = "-index";
+        String input = "Mary had a little lamb";
+        provideInput(input);
+
+        RunApplication.main(arguments);
+
+        assertEquals("Enter text: Number of words: 4, unique: 4; average word length: 4.25 characters\nIndex:\nhad\nlamb\nlittle\nMary", getOutput());
+    }
+
     private void provideInput(String data) {
         testIn = new ByteArrayInputStream(data.getBytes());
         System.setIn(testIn);

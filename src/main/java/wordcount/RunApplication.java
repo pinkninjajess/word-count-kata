@@ -12,16 +12,21 @@ public class RunApplication {
     public static void main(String[] args) {
         FileInput userFileInput = new WordsFileInput();
 
+        boolean showIndex = false;
         if (args.length > 0) {
             for (String argument : args) {
-                userFileInput.setFilePath(argument);
+                if (argument.compareToIgnoreCase("-index") == 0) {
+                    showIndex = true;
+                } else {
+                    userFileInput.setFilePath(argument);
+                }
             }
         }
 
         UserInterface ui = new ConsoleUserInterface();
         FileInput stopWords = new WordsFileInput();
         stopWords.setFilePath(STOP_WORDS_FILE_PATH);
-        WordCounter wordCounter = new WordCounter(ui, stopWords, userFileInput);
+        WordCounter wordCounter = new WordCounter(ui, stopWords, userFileInput, showIndex);
         wordCounter.countWords();
     }
 }
